@@ -1,0 +1,304 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    margin-left: 10px;
+    margin-right: 10Px;
+    max-width: 90%;
+    font-family: "Palatino Linotype";
+    background-color: linen;
+    counter-reset: footnotes;
+}
+
+
+.title {
+    text-align: center;
+}
+
+div {
+    background-color: inherit;
+}
+
+h1 {
+    margin-top: 100px;
+    margin-bottom: 20px;
+    margin-left: 0;
+    text-align: left;
+    font-weight: 700;
+    font-family: "Palatino Linotype";
+    line-height: 1; 
+}
+
+h2 {
+    font-weight: 600;
+    margin-left: 0;
+    text-align: left;
+    font-family: "Palatino Linotype";
+    line-height: 1;
+    counter-reset: section3;
+}
+
+h3::before {
+  counter-increment: section3;
+  content: counter(section3) ". ";
+}
+
+h3 {
+    font-weight: 400;
+    margin-top: 1.7rem;
+    margin-bottom: 1.4rem;
+    margin-left: 0;
+    text-align: left;
+    line-height: 1;
+    counter-reset: section4;
+}
+
+h3::first-letter {
+    font-weight: 600;
+}
+
+h4::before {
+    counter-increment: section4;
+    content: counter(section4, lower-alpha) ". ";
+}
+
+h4.author::before, h4.date::before {
+    content: "";
+}
+
+h4 {
+    font-weight: 400;
+    margin-left: 25px;
+    line-height: 1;
+    counter-reset: section5;
+}
+
+h4.author, h4.date {
+    font-weight: 300;
+    font-size: 16px;
+    text-align: center;
+}
+
+h5::before {
+    counter-increment: section5;
+    content: counter(section5, lower-roman) ". ";
+    
+}
+
+h5 {
+    font-style: italic;
+    font-weight: 400;
+    margin-left: 50px;
+    line-height: 1;     
+}
+
+h6 {
+    margin-left: 75px;
+}
+
+ol {
+  margin-left: 40px;
+}
+
+.a {
+    margin-left: 45px;
+}
+
+#math {
+    margin-left: 10px;
+    background-color: inherit;
+}
+
+p:not(#math) {
+    margin-left: 0;
+    font-size: 16px;
+    background-color: inherit;
+}
+
+p.intro::first-letter {
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+#note {
+    float: right;
+    clear: right;
+    position: relative;
+    margin-right: -10%;
+    width: 50%;
+    font-size: 12px;
+}
+
+.r {
+    margin-left: 100px;
+    max-width: 672px;
+    padding-left: 5px;
+    border-style: solid;
+    border-width: thin;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background-color: lightgrey;
+}
+
+pre:not(.r) {
+    margin-left: 100px;
+    max-width: 672px;
+    padding-left: 5px;
+    border-style: solid;
+    border-width: thin;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    background-color: inherit;
+}
+
+table {
+    margin-left: 100px;
+    width: 60%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 15px 5px;
+}
+
+th {
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    background-color: rgb(0,190,255);
+    opacity: 0.6;
+    padding: 15px;
+}
+
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    text-align: left;
+}
+
+/**
+ * Inline footnotes references
+ * 1. Increment the counter at each new reference
+ * 2. Reset link styles to make it appear like regular text
+ *
+ */
+a[aria-describedby="footnote-label"] {
+    counter-increment: footnotes; /* 1 */
+    text-decoration: none; /* 2 */
+    color: inherit; /* 2 */
+    cursor: default; /* 2 */
+    outline: none; /* 2 */
+ }
+ 
+ 
+/**
+ * Actual numbered references
+ * 1. Display the current state of the counter (e.g. `[1]`)
+ * 2. Align text as superscript
+ * 3. Make the number smaller (since it's superscript)
+ * 4. Slightly offset the number from the text
+ * 5. Reset link styles on the number to show it's usable
+ */
+a[aria-describedby="footnote-label"]::after {
+  content: '[' counter(footnotes) ']'; /* 1 */
+  vertical-align: super; /* 2 */
+  font-size: 0.75em; /* 3 */
+  margin-left: 2px; /* 4 */
+  color: blue; /* 5 */
+  text-decoration: underline; /* 5 */
+  cursor: pointer; /* 5 */
+}
+
+/**
+ * Resetting the default focused styles on the number
+ */
+a[aria-describedby="footnote-label"]:focus::after {
+  outline: thin dotted;
+  outline-offset: 2px;
+}
+
+footer :target {
+  background: yellow;
+}
+
+[aria-label="Back to content"] {
+  font-size: 0.8em;
+}
+
+#grad1 {
+  height: 200px;
+  background-image: linear-gradient(rgba(255,0,0,0), rgba(255,0,0,1));
+  /* Standard syntax (must be last) */
+}
+
+/**
+ * Table of Contents
+ *
+ *
+ *
+ * .container-fluid {
+ *   padding-left: 0;
+ *
+ * }
+ */
+
+
+/**
+* {
+  box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    padding: 60px;
+    text-align: center;
+    background: inherit;
+}
+
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.side {
+    flex: 50px;
+    position: fixed;    
+    background: inherit none repeat scroll 0 0;
+    font-size: 95%;
+    text-align: left;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.main {
+  flex: auto;
+  background-color: inherit;
+  padding: 0;
+}
+
+.author {
+    position: relative;
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: inherit;
+}
+
+.date{
+    position: relative;
+    float: right;
+    clear: right;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: inherit;
+}
+*/
+
+

@@ -1,0 +1,70 @@
+---
+title: "Primary Care Model"
+author: "Ed Young"
+date:  '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+     html_document:
+          theme: null
+          highlight: null
+          css: styles.css
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, cache=FALSE, warning=FALSE, message=FALSE)
+```
+
+
+
+I am setting up a sample model using average demographics for New York State. I'll focus on gathering 
+ - demographic data, 
+ - estimating visit frequencies, and 
+ - making initial predictions for resource requirements.
+
+# Demographic Data
+To build a representative model, I will need the following:
+
+## Age distribution
+based on the total population of New York State, which is approximately 19.6 million:
+
+### Adults aged 18-44: Around 43.9%
+### Adults aged 45-64: Around 34.5%
+### Seniors aged 65 and over: Around 21.7%
+
+## Gender distribution
+
+## Common health issues or chronic conditions
+
+# Estimate Visit Frequencies
+Using the National Health Statistics Reports"Characteristics of Office-based Physician Visits by Age, 2019"  (https://www.cdc.gov/nchs/data/nhsr/nhsr184.pdf)  the estimate for the number of annual visits per demographic group are:
+
+## Adults age 18 - 44: 1.88 visits per year
+## Adults (45-64): 3.75 visits per year
+## Seniors (65+): 7.09 visits per year
+
+# Initial Predictions for Resource Requirements
+
+```{r model setup}
+
+# Sample demographic data based on New York State averages
+age_group <- c("Age 18-44", "Age 45-64", "Age over 65")
+percentage <- c(43.9, 34.5, 21.7)  # Hypothetical distribution
+visits_per_year <- c(1.88, 3.75, 7.09)  # Hypothetical visit frequencies
+
+# Create a data frame
+df <- data.frame(Age_Group = age_group, Percentage = percentage, Visits_Per_Year = visits_per_year)
+
+# Calculate the number of patients in each group
+total_patients <- 10000
+df$Number_of_Patients <- (df$Percentage / 100) * total_patients
+
+# Calculate the total number of visits per year for each group
+df$Total_Visits_Per_Year <- df$Number_of_Patients * df$Visits_Per_Year
+
+# Display the data frame
+df %>% 
+  select(Age_Group, Percentage, Number_of_Patients, Visits_Per_Year, Total_Visits_Per_Year) %>% 
+  kable
+
+```
